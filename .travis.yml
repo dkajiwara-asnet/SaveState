@@ -2,7 +2,13 @@ language: android
 jdk:
   - openjdk7
 script:
-  - ./gradlew library:assembleDebug
+  - export POWERASSERT_VERBOSE=2
+  - ./gradlew --daemon --stacktrace library:build
+  - # export COVERAGE=true
+  - ./gradlew --daemon --stacktrace library:connectedCheck || (adb logcat -t 100 '*:E' && false)
+env:
+  - TARGET=android-10 ABI=armeabi
+  - TARGET=android-21 ABI=armeabi-v7a
 android:
   components:
     # Uncomment the lines below if you want to
@@ -24,3 +30,11 @@ android:
     - sys-img-x86-android-17
 before_install:
   - chmod +x gradlew
+  - export TERM=dumb # to get clean gradle output
+  - android list targets # for debugging
+  - echo no | android create avd --force -n test -t $TARGET -b $ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - ./gradlew --daemon --stacktrace tasks # install dependencies while the eumulator is booting
+  - android-wait-for-emulator
+after_script:
+  - android delete avd -n test
