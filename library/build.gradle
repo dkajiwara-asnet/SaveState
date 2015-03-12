@@ -12,7 +12,13 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    jacoco {
+        version = '0.7.1.201405082137'
+    }
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -25,6 +31,10 @@ android {
     packagingOptions {
         exclude 'LICENSE.txt'
     }
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
