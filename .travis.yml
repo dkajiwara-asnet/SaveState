@@ -2,12 +2,10 @@ language: android
 jdk:
   - openjdk7
 script:
-  - export POWERASSERT_VERBOSE=2
   - ./gradlew --daemon --stacktrace library:build
   - # export COVERAGE=true
   - ./gradlew --daemon --stacktrace library:connectedCheck || (adb logcat -t 100 '*:E' && false)
 env:
-  - TARGET=android-10 ABI=armeabi
   - TARGET=android-21 ABI=armeabi-v7a
 android:
   components:
