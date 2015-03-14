@@ -2,6 +2,34 @@
 
 Easy save the instance state
 
+# Usage
+
+```java
+public class MainActivity extends Activity {
+    /** TAG.*/
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    @SaveState
+    private int age;
+    @SaveState
+    private String name;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        InjectSave.restoreInstanceState(this, savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        InjectSave.saveInstanceState(this, outState);
+    }
+}
+```
+
+
 # Download
 ```groovy
 repositories {
