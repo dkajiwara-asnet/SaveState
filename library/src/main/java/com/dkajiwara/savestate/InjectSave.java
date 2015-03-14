@@ -38,6 +38,8 @@ public class InjectSave {
     /** Suffix for Bundle key.*/
     private static final String SUFFIX = "$$SaveState";
 
+    private InjectSave() { }
+
     /**
      * Save the instance variable field SaveState Annotation is set to this bundle.
      * <p/>
@@ -118,7 +120,7 @@ public class InjectSave {
             bundle.putIntegerArrayList(key, (ArrayList<Integer>) value);
         } else if (isCharSequenceArrayList(value)) {
             bundle.putCharSequenceArrayList(key, (ArrayList<CharSequence>) value);
-        } else if (isSpaceArray(value)) {
+        } else if (isSparseArray(value)) {
             bundle.putSparseParcelableArray(key, (SparseArray<? extends Parcelable>) value);
         } else if (isParcelableArray(value)) {
             bundle.putParcelableArrayList(key, (ArrayList<? extends Parcelable>) value);
@@ -128,7 +130,7 @@ public class InjectSave {
     }
 
     private static boolean isParcelableArray(Object value) {
-        if (!(value instanceof SparseArray<?>)) {
+        if (!(value instanceof ArrayList<?>)) {
             return false;
         }
         List<?> list = (ArrayList<?>) value;
@@ -140,7 +142,7 @@ public class InjectSave {
         return true;
     }
 
-    private static boolean isSpaceArray(Object value) {
+    private static boolean isSparseArray(Object value) {
         if (!(value instanceof SparseArray<?>)) {
             return false;
         }
@@ -249,6 +251,8 @@ public class InjectSave {
             }
             return fields;
         }
+
+        private ReflectUtils() {}
     }
 
 }
