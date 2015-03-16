@@ -30,4 +30,4 @@ after_script:
 - android delete avd -n test
 notifications:
   slack:
-    secure: FONwDLu3nx2mw3VNSKRb4TbkErdNB+GQCSpCprRlIzNAdn+jBC0LDdpI6MUxwZObhwBhoArnaPtybfhe0qZq0rVav+mF4ypMuz2W5DKlOy2bXSoYcD6RilzGnZoWIuWqD8cMbCuptTAB54yTfgB29cExNaLhoQgcKaa1KEOapnc=
+    secure: fux0AWdJ6lwJA29jkqRPN+CJua+0fuy/4G3uV2pBPQ6BnYUR9ty9E+1Il2tLeDU0cBLXAkhzUcGj3SrHP+NdZQF3s7vst/7SOFpOK61zCW4qAtDxQ3sCs9oFOQD548bwVQHJuPxdnQ1mA8OMzve0+oDx/LaRglVo5quXtT+wHlA=
